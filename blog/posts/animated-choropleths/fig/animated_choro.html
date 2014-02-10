@@ -24,7 +24,8 @@
     
     
       <div class='container'>
-        <input id='slider' type='range' min=1960 max=2010 ng-model='year' width=200> 
+        <input id='slider' type='range' min=1960 max=2010 ng-model='year' width=200>
+        <span ng-bind='year'></span>
         <div id='chart_1' class='rChart datamaps'></div>  
       </div>
       <script>

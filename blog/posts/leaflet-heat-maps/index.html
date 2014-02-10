@@ -59,13 +59,10 @@
 	    </div>
     </header>
     <div id="article">
-	    
-<pre><code class="r">library(knitr)
-options(rcharts.cdn = TRUE, RCHART_WIDTH = 800, RCHART_HEIGHT = 400)
-opts_chunk$set(tidy = F, results = &quot;asis&quot;, comment = NA, fig.path = &quot;fig/&quot;)
-</code></pre>
+	    <h2>Create Map</h2>
+<p>We start by creating a map of the location.</p>
 
-<pre><code class="r">library(rCharts)
+<pre><code class="r">library(rMaps)
 L2 &lt;- Leaflet$new()
 L2$setView(c(29.7632836,  -95.3632715), 10)
 L2$tileLayer(provider = &quot;MapQuestOpen.OSM&quot;)
@@ -73,16 +70,18 @@ L2
 </code></pre>
 
 <iframe src='
-fig/unnamed-chunk-1.html
+fig/leaflet_map.html
 ' scrolling='no' seamless
 class='rChart leaflet '
 id=iframe-
-chart182a6b6bf663
+chart9a9f26605a4
 ></iframe>
 
 <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
 <h2>Get Data</h2>
+
+<p>We will use the <code>crime</code> dataset from the <code>ggmap</code> package that contains a tidied up version of Houston crime data from January 2010 to August 2010. </p>
 
 <pre><code class="r">data(crime, package = &#39;ggmap&#39;)
 library(plyr)
@@ -95,6 +94,8 @@ cat(rjson::toJSON(crime_dat[1:2]))
 </code></pre>
 
 <h2>Add HeatMap</h2>
+
+<p>Now that we have the map and the data, the next step is to add the data to the map as a heatmap layer. Thanks to the <a href="https://github.com/Leaflet/Leaflet.heat">Leaflet.heat</a> plugin written by the Vladimir Agafonkin, the author of LeafletJS, this is really easy to do, with a little bit of custom javascript.</p>
 
 <pre><code class="r"># Add leaflet-heat plugin. Thanks to Vladimir Agafonkin
 L2$addAssets(jshead = c(
@@ -114,14 +115,16 @@ L2
 </code></pre>
 
 <iframe src='
-fig/unnamed-chunk-3.html
+fig/leaflet_heatmap.html
 ' scrolling='no' seamless
 class='rChart leaflet '
 id=iframe-
-chart182a6b6bf663
+chart9a9f26605a4
 ></iframe>
 
 <style>iframe.rChart{ width: 100%; height: 400px;}</style>
+
+<p>Note that it is easy to abstract away these additional steps into a method for the Leaflet class, or an R function that only needs to be provided the data.</p>
 
 <style>
   table.nofluid {width: auto; margin: 0 auto;}

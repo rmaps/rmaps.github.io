@@ -103,7 +103,7 @@ We have one final step before we can start visualizing the data.
 The data frame needs to be converted into a list of lists, as it is the default data structure that the [DataMaps](http://datamaps.github.io) library accepts. Thanks to [Hadley's](http://had.co.nz) `plyr` package, this only requires a few lines of code.
 
 ```{r}
-library(plyr); library(rCharts)
+library(plyr); library(rMaps)
 dat2 <- dlply(na.omit(datm2), "Year", function(x){
   y = toJSONArray2(x, json = F)
   names(y) = lapply(y, '[[', 'State')
@@ -158,9 +158,10 @@ map2$addAssets(
 We then invoke the `setTemplate` method to modify the default layout in the rCharts template. There are two parts to the modified layout. The first is a `div` container to hold the map and a slider to control the year. Second, is an `rChartsCtrl` function that specifies how to update the map when the user interacts the the slider.
 
 ```{r}
-map2$setTemplate(chartDiv = sprintf("
+map2$setTemplate(chartDiv = "
   <div class='container'>
-    <input id='slider' type='range' min=1960 max=2010 ng-model='year' width=200> %s
+    <input id='slider' type='range' min=1960 max=2010 ng-model='year' width=200>
+    <span ng-bind='year'></span>
     <div id='{{chartId}}' class='rChart datamaps'></div>  
   </div>
   <script>
@@ -170,7 +171,7 @@ map2$setTemplate(chartDiv = sprintf("
         map{{chartId}}.updateChoropleth(chartParams.newData[newYear]);
       })
     }
-  </script>", "{{ year }}")
+  </script>"
 )
 ```
 
@@ -178,7 +179,7 @@ AngularJS makes it really easy to create two-way data bindings. Let me explain h
 
 When the user slides the slider, the value of `year` changes. `rChartsCtrl` watches for changes in value of `year` and when it does change, it calls the `updateChoropleth` function to update the map. 
 
-```{r animated_choro, results = 'asis', comment = NA}
+```{r animated_choro, results = 'asis', comment = NA, cache = F}
 map2$set(newData = dat2)
 map2
 ```

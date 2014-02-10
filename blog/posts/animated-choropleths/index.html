@@ -311,7 +311,7 @@ kable(head(datm2), format = &#39;html&#39;, table.attr = &quot;class=nofluid&quo
 <h2>Create Payload for DataMaps</h2>
 <p>The data frame needs to be converted into a list of lists, as it is the default data structure that the <a href="http://datamaps.github.io">DataMaps</a> library accepts. Thanks to <a href="http://had.co.nz">Hadley&#39;s</a> <code>plyr</code> package, this only requires a few lines of code.</p>
 
-<pre><code class="r">library(plyr); library(rCharts)
+<pre><code class="r">library(plyr); library(rMaps)
 dat2 &lt;- dlply(na.omit(datm2), &quot;Year&quot;, function(x){
   y = toJSONArray2(x, json = F)
   names(y) = lapply(y, &#39;[[&#39;, &#39;State&#39;)
@@ -365,9 +365,10 @@ map2$addAssets(
 
 <p>We then invoke the <code>setTemplate</code> method to modify the default layout in the rCharts template. There are two parts to the modified layout. The first is a <code>div</code> container to hold the map and a slider to control the year. Second, is an <code>rChartsCtrl</code> function that specifies how to update the map when the user interacts the the slider.</p>
 
-<pre><code class="r">map2$setTemplate(chartDiv = sprintf(&quot;
+<pre><code class="r">map2$setTemplate(chartDiv = &quot;
   &lt;div class=&#39;container&#39;&gt;
-    &lt;input id=&#39;slider&#39; type=&#39;range&#39; min=1960 max=2010 ng-model=&#39;year&#39; width=200&gt; %s
+    &lt;input id=&#39;slider&#39; type=&#39;range&#39; min=1960 max=2010 ng-model=&#39;year&#39; width=200&gt;
+    &lt;span ng-bind=&#39;year&#39;&gt;&lt;/span&gt;
     &lt;div id=&#39;&#39; class=&#39;rChart datamaps&#39;&gt;&lt;/div&gt;  
   &lt;/div&gt;
   &lt;script&gt;
@@ -377,7 +378,7 @@ map2$addAssets(
         map.updateChoropleth(chartParams.newData[newYear]);
       })
     }
-  &lt;/script&gt;&quot;, &quot;&quot;)
+  &lt;/script&gt;&quot;
 )
 </code></pre>
 
@@ -456,7 +457,7 @@ fig/ichropleth.html
 ' scrolling='no' seamless
 class='rChart datamaps '
 id=iframe-
-chart512a952a513
+chart9a9f72c2d8d4
 ></iframe>
 
 <style>iframe.rChart{ width: 100%; height: 400px;}</style>

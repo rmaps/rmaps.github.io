@@ -285,7 +285,7 @@ The data frame needs to be converted into a list of lists, as it is the default 
 
 
 ```r
-library(plyr); library(rCharts)
+library(plyr); library(rMaps)
 dat2 <- dlply(na.omit(datm2), "Year", function(x){
   y = toJSONArray2(x, json = F)
   names(y) = lapply(y, '[[', 'State')
@@ -355,9 +355,10 @@ We then invoke the `setTemplate` method to modify the default layout in the rCha
 
 
 ```r
-map2$setTemplate(chartDiv = sprintf("
+map2$setTemplate(chartDiv = "
   <div class='container'>
-    <input id='slider' type='range' min=1960 max=2010 ng-model='year' width=200> %s
+    <input id='slider' type='range' min=1960 max=2010 ng-model='year' width=200>
+    <span ng-bind='year'></span>
     <div id='{{chartId}}' class='rChart datamaps'></div>  
   </div>
   <script>
@@ -367,7 +368,7 @@ map2$setTemplate(chartDiv = sprintf("
         map{{chartId}}.updateChoropleth(chartParams.newData[newYear]);
       })
     }
-  </script>", "{{ year }}")
+  </script>"
 )
 ```
 
@@ -458,7 +459,7 @@ fig/ichropleth.html
 ' scrolling='no' seamless
 class='rChart datamaps '
 id=iframe-
-chart512a952a513
+chart9a9f72c2d8d4
 ></iframe>
 <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 

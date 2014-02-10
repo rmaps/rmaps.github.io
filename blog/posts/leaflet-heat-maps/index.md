@@ -9,21 +9,20 @@ mode: selfcontained
 url: {lib: ../../libraries}
 image: crime_map.png
 date: "2014-02-08"
-description: This is a short post on how to use rCharts 
+description: >
+  This is a short post on how to use rMaps, Leaflet and the Leaflet Heatmap plugin to visualize spatial distribution of crime.
 ---
 
 
-```r
-library(knitr)
-options(rcharts.cdn = TRUE, RCHART_WIDTH = 800, RCHART_HEIGHT = 400)
-opts_chunk$set(tidy = F, results = "asis", comment = NA, fig.path = "fig/")
-```
 
 
+## Create Map
+
+We start by creating a map of the location.
 
 
 ```r
-library(rCharts)
+library(rMaps)
 L2 <- Leaflet$new()
 L2$setView(c(29.7632836,  -95.3632715), 10)
 L2$tileLayer(provider = "MapQuestOpen.OSM")
@@ -31,17 +30,19 @@ L2
 ```
 
 <iframe src='
-fig/unnamed-chunk-1.html
+fig/leaflet_map.html
 ' scrolling='no' seamless
 class='rChart leaflet '
 id=iframe-
-chart182a6b6bf663
+chart9a9f26605a4
 ></iframe>
 <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
 
 
 ## Get Data
+
+We will use the `crime` dataset from the `ggmap` package that contains a tidied up version of Houston crime data from January 2010 to August 2010. 
 
 
 ```r
@@ -58,6 +59,8 @@ cat(rjson::toJSON(crime_dat[1:2]))
 
 
 ## Add HeatMap
+
+Now that we have the map and the data, the next step is to add the data to the map as a heatmap layer. Thanks to the [Leaflet.heat](https://github.com/Leaflet/Leaflet.heat) plugin written by the Vladimir Agafonkin, the author of LeafletJS, this is really easy to do, with a little bit of custom javascript.
 
 
 ```r
@@ -79,14 +82,16 @@ L2
 ```
 
 <iframe src='
-fig/unnamed-chunk-3.html
+fig/leaflet_heatmap.html
 ' scrolling='no' seamless
 class='rChart leaflet '
 id=iframe-
-chart182a6b6bf663
+chart9a9f26605a4
 ></iframe>
 <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
+
+Note that it is easy to abstract away these additional steps into a method for the Leaflet class, or an R function that only needs to be provided the data.
 
 
 <style>
