@@ -1,0 +1,54 @@
+# Dependencies
+markdown:	redcarpet
+pygments:	true
+
+# Permalinks
+permalink:	/:title
+
+# Setup
+title:		rMaps
+tagline:	'Interactive Maps from R'
+description:	'Random Ramblings'
+url:		"/blog"
+baseurl: "/blog"
+
+author:
+  name:		'Ramnath Vaidyanathan'
+  url:		https://twitter.com/ramnath_vaidya
+
+paginate:	5
+
+# Custom vars
+ico:      /assets/images/slidify_logo_small.ico
+icon:		  /assets/images/slidify_logo_small.png
+cover:		/assets/images/maps.jpg
+
+social:
+  - icon:	twitter
+    url:	https://twitter.com/ramnath_vaidya
+    desc:	Follow me on twitter
+
+  - icon:	github
+    url:	https://github.com/ramnathv
+    desc:	Fork me on github
+
+  - icon:	googleplus-alt
+    url:	https://google.com/+ramnath.vaidya
+    desc:	Add me on google+
+
+  - icon:	feed
+    url:	http://mgcr271.github.io/testblog/atom.xml
+    desc:	Subscribe to my feed
+    
+menu:
+  - title:	Home
+    url:	'/'
+    
+  - title:	About
+    url:	/blog/about/
+    
+copyright:
+  author:	Ramnath Vaidyanathan
+  url:		http://github.com/ramnathv
+  type_title:	Some rights reserved
+  type_url:	http://creativecommons.org/licenses/by-nc/2.5

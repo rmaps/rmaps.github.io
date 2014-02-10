@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	{{> head }}
+	<body>
+    <header class="clean" style="height: 350px; background-image: url({{site.url}}{{ site.cover }});">
+  {{> top }}
+  <div id="home-title">
+		<a href="{{ site.url }}">
+			<!-- <img src="{{site.url}}{{ site.icon }}" class="site-icon"> -->
+      <h1 style='color:black;'>{{ site.tagline }}</h1>
+		</a>
+	</div>
+</header>
+		{{{ page.content }}}
+	</body>
+</html>

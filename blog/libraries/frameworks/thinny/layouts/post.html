@@ -1,0 +1,56 @@
+---
+layout: default
+article: true
+---
+
+<header class="{% if page.dark %}dark{% else %}clean{% endif %}" style="background-image: url({% if page.image %}{{site.url}}/{{ page.image }}{% else %}{{site.url}}{{ site.cover }}{% endif %});{% if page.background_position %} background-position: {{ page.background_position }};{% endif %}height: 100%;">
+	{% if page.video %}
+		<video id="bg-video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+			{% if page.video_webm %}<source src="{{ page.video_webm }}" type="video/webm">{% endif %}
+			{% if page.video_ogv %}<source src="{{ page.video_ogv }}" type="video/ogg ogv">{% endif %}
+			{% if page.video_mp4 %}<source src="{{ page.video_mp4 }}" type="video/mp4">{% endif %}
+		</video>
+		{% if page.video_pattern %}<div id="bg-video-pattern"></div>{% endif %}
+	{% endif %}
+	{% include top.html %}
+	<div id="post-info">
+		<h1>{{ page.title }}</h1>
+		{% if page.quote %}
+			<h2>{{ page.quote }}</h2>
+		{% endif %}
+		<!-- <a class="site-title" href="{{ site.url }}">
+			<img src="{{ site.icon }}" class="site-icon-small">
+			{{ site.title }}
+		</a> -->
+		{{ page.date | date_to_long_string }}
+	</div>
+	<div id="nav-icon" style="bottom: 60px;">
+		<a class="scroll" data-speed="1000" href="#article"><span class="genericon genericon-expand"></span></a>
+	</div>
+</header>
+<div id="article">
+	{{ content }}
+</div>
+<footer class="{% if post.dark %}dark{% else %}clean{% endif %}" style="background-image: url({% if post.image %}{{site.url}}{{ post.image }}{% else %}{{site.url}}{{ site.cover }}{% endif %});{% if post.background_position %} background-position: {{ post.background_position }};{% endif %}height: 40%; min-height: 250px;">
+	<div id="nav-icon" style="top: 25px;">
+		<a class="scroll" data-speed="1000" href="#article"><span class="genericon genericon-collapse"></span></a>
+	</div>
+	{% for post in site.related_posts limit:1 %}
+	<div id="post-info">
+		<h3>Em destaque</h3>
+		<a href="{{site.url}}{{ post.url }}">
+			<h1>{{ post.title }}</h1>
+			{% if post.quote %}
+				<h2>{{ post.quote }}</h2>
+			{% endif %}
+		</a>
+		<div id="nav-icon" style="bottom: -10px;">
+		  <a data-speed="1000" href="{{site.url}}{{ post.url }}"><span class="genericon genericon-expand"></span></a>
+	    </div>
+	</div>
+	{% endfor %}
+	<p class="copyright">&copy;{{ site.time | date: "%Y" }}, <a href="{{ site.copyright.url }}" target="_blank">{{ site.copyright.author }}</a>. <a href="{{ site.copyright.type_url }}" target="_blank">{{ site.copyright.type_title }}</a>.</p>
+</footer>
+<script src="{{site.url}}/assets/js/smooth-scroll.js"></script>
+  </ul>
+</div>

@@ -1,0 +1,17 @@
+<label class="menu" for="_1">
+	<span class="genericon genericon-menu"></span>
+</label>
+<input id="_1" type="checkbox">
+<div class="menu-content">
+	<div class="menu" style="background-color: #777;"></div>
+  {{# site.menu }}
+	<a href="{{ url }}">{{ title }}</a><br>
+	{{/ site.menu }}
+</div>
+<div class="social-links">
+	{{# site.social }}
+	<a href="{{ url }}" target="_blank" title="{{ desc }}">
+    <span class="genericon genericon-{{ icon }}"></span>
+  </a>
+	{{/ site.social }}
+</div>

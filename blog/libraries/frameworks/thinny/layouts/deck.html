@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  {{> head }}
+  <link href="{{page.url.highlighter}}/css/{{page.hitheme}}.css" rel="stylesheet" />
+  {{{ page.assets.css }}}
+	<body>
+		<header class="{{ page.class }}" style="background-image: url({{# page.image }}{{ page.image }}{{/ page.image }} {{^ page.image }}{{site.url}}{{ site.cover }}{{/ page.image }});{{# page.background_position }} background-position: {{ page.background_position }};{{/ page.background_position }}height: 100%;">
+	    {{ > top }}
+	    <div id="post-info">
+        {{ page.date }}
+		    <h1>{{ page.title }}</h1>
+		    {{# page.quote }}
+			    <h2>{{ . }}</h2>
+		    {{/ page.quote }}
+		    <!-- <a class="site-title" href="{{ site.url }}">
+			    <img src="{{ site.icon }}" class="site-icon-small">
+			    {{ site.title }}
+		    </a> -->
+        <div class='share'></div>
+	    </div>
+	    <div id="nav-icon" style="bottom: 60px;">
+		    <a class="scroll" data-speed="1000" href="#article">
+          <span class="genericon genericon-expand"></span>
+        </a>
+	    </div>
+    </header>
+    <div id="article">
+	    {{{ page.content }}}
+      <div class='share' style='margin-top:30px;'></div>
+    </div>
+     
+    {{> footer }}
+	</body>
+  <script src="{{page.url.framework}}/assets/js/smooth-scroll.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="{{page.url.framework}}/assets/js/share.min.js"></script>
+  {{{ page.assets.js }}}
+  {{> javascripts }}
+  <script type='text/javascript'>
+    $('.share').share({
+      text: "{{ page.title }}"
+    })
+  </script>
+</html>

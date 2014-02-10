@@ -1,0 +1,28 @@
+<head>
+	<link href="http://gmpg.org/xfn/11" rel="profile">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+  {{# page.article }}
+	<link rel="canonical" href="{{ site.url }}{{ page.link }}" />
+	<meta name="description" content="{{ page.quote }}" />
+	<meta property="og:description" content="{{ page.description }}" />
+	<meta itemprop="image" content="{{ page.image }}" />
+	<meta property="og:image" content="{{ page.image }}" />
+	<meta property="og:title" content="{{ page.title }}" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="{{ site.url }}{{ page.link }}" />
+	<meta property="og:site_name" content="{{ site.title }}" />
+  {{/ page.article }}
+	<title>{{ page.title }}</title>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" type="text/css" media="only screen and (min-width: 1001px)" href="{{ page.url.framework }}/assets/css/desktop.css" />
+	<link rel="stylesheet" type="text/css" media="only screen and (max-width: 1000px)" href="{{ page.url.framework }}/assets/css/mobile.css" />
+	<link href="{{ page.url.framework }}/assets/css/genericons.css" type="text/css" rel="stylesheet" />
+	<link href="{{ page.url.framework }}/assets/css/syntax.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+	<link rel="apple-touch-icon" href="{{site.baseurl}}{{ site.icon }}">
+	<link rel="shortcut icon" href="{{site.baseurl}}{{site.ico}}">
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ site.url }}/atom.xml">
+</head>

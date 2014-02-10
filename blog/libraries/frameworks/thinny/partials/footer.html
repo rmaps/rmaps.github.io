@@ -1,0 +1,20 @@
+<footer class="{{ page.class }}" style="background-image: url({{# page.next.image }}{{site.url}}{{ page.next.image }}{{/ page.next.image }} {{^ page.next.image }}{{site.url}}{{ site.cover }}{{/ page.next.image }});{{# page.background_position }} background-position: {{ page.background_position }};{{/ page.background_position }}height: 40%; min-height: 250px;">
+  <div id="nav-icon" style="top: 25px;">
+		<a class="scroll" data-speed="1000" href="#article">
+      <span class="genericon genericon-collapse"></span>
+    </a>
+	</div>
+  <div id="post-info">
+		<a href="{{site.url}}{{ page.next.link }}">
+			<h1>{{ page.next.title }}</h1>
+			{{# page.next.quote }}
+				<h2>{{{ . }}}</h2>
+			{{/ page.next.quote }}
+		</a>
+		<div id="nav-icon" style="bottom: -10px;">
+		  <a data-speed="1000" href="{{site.url}}{{ page.next.link }}">
+        <span class="genericon genericon-expand"></span>
+      </a>
+	   </div>
+	</div>
+</footer>
